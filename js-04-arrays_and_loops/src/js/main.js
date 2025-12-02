@@ -1,4 +1,3 @@
-
 console.log("Sesión JS-04: Arrays y Bucles");
 
 /* ================================================================
@@ -6,184 +5,195 @@ console.log("Sesión JS-04: Arrays y Bucles");
    ================================================================
    Un Array es una estructura de datos que nos permite almacenar 
    múltiples valores en una sola variable.
-   
-   Analogía: Una cajonera donde cada cajón tiene un número (índice)
-   para identificar qué hay dentro.
 */
 const myArray = [true, 42, "Hola", null, { nombre: "Juan" }, [1, 2, 3 ]];
 
 // --- 1. Definición ---
-// Sintaxis moderna: Usamos corchetes [] (Array Literal)
-// Nota: Usamos 'const' aunque el contenido cambie. Lo que es constante
-// es la referencia en memoria, no los datos internos.
+const frutas = [];
+const fruits = new Array();
 
-const frutas = []; // empty array
-const fruits = new Array(); // array using constructor (less common)
-
-const numeros = [ 5 ]; // array with one element
-const numbers = new Array(5); // array with 5 empty slots [ <5 empty items> ]
+const numeros = [ 5 ];
+const numbers = new Array(5);
 
 // --- 2. Acceso a Elementos ---
-// Los índices comienzan en 0 (Zero-based indexing).
-// [0] -> Primer elemento
-// [length - 1] -> Último elemento
-
 const techStack = ["HTML", "CSS", "JavaScript"];
 
-// Acceder al primer elemento
-console.log( techStack.length ); // 3
-console.log(`Accediendo al primer elemento:  ${ techStack[0] }` ); // "HTML"
-
-// Accediendo al segundo elemento
+console.log( techStack.length ); 
+console.log(`Accediendo al primer elemento:  ${ techStack[0] }`);
 console.log(`Accediendo al segundo elemento: ${ techStack[1] }`);
-
-// Acceder al último elemento (longitud - 1)
 console.log(`Accediendo al último elemento: ${ techStack[ techStack.length - 1 ] }`);
 
 // --- 3. Modificación de Elementos ---
-techStack[1] = "Sass"; // Cambiando "CSS" por "Sass"
-console.log("Después de la modificación:", techStack); // ["HTML", "Sass", "JavaScript"]
+techStack[1] = "Sass";
+console.log("Después de la modificación:", techStack);
 
-// Agregar un nuevo elemento al final
-// techStack[3]
-techStack[ techStack.length ] =  "TypeScript"; // ["HTML", "Sass", "JavaScript", "TypeScript"]
-
+techStack[ techStack.length ] =  "TypeScript";
 
 /* ================================================================
    BLOQUE 2: MÉTODOS DE ARRAYS (Add/Remove) 
-   ================================================================
-   JavaScript nos da métodos para manipular la lista como una pila o cola.
-*/
+   ================================================================ */
 const shoppingList = ["Leche", "Huevos"];
 
-// 1. push(): Agrega al FINAL (El más usado)
-// Retorna la nueva longitud del array.
 shoppingList.push("Pan"); 
-console.log("Push:", shoppingList); // ["Leche", "Huevos", "Pan"]
+console.log("Push:", shoppingList);
 
-// 2. unshift(): Agrega al INICIO (Mueve todos los índices, es más lento)
 shoppingList.unshift("Café");
-console.log("Unshift:", shoppingList); // ["Café", "Leche", "Huevos", "Pan"]
+console.log("Unshift:", shoppingList);
 
-
-// --- Eliminar Elementos ---
-
-// 3. pop(): Elimina el ÚLTIMO y lo devuelve
 const removedItem = shoppingList.pop();
-console.log(`Eliminado con pop: ${removedItem}`); // "Pan"
+console.log(`Eliminado con pop: ${removedItem}`);
 console.log("Lista actual:", shoppingList);
 
-// 4. shift(): Elimina el PRIMERO y lo devuelve
 const firstRemoved = shoppingList.shift();
-console.log(`Eliminado con shift: ${firstRemoved}`); // "Café"
-
-
+console.log(`Eliminado con shift: ${firstRemoved}`);
 
 // --- Método splice() ---
-// Permite eliminar o agregar elementos en cualquier posición
 const colors = ["Rojo", "Verde", "Azul", "Amarillo", "Morado", "Naranja"];
+console.log("Colores iniciales:", colors.toString());
+console.log("Colores iniciales:", colors.join(" - "));
 
+colors.splice(2, 0, "Rosa", "Cian");
+console.log("Después de agregar con splice:", colors.toString());
 
-let listadeinvitados = ["polo", "pepe"];
+// TODO EXERCISE
+const guestList = ['Walter', 'Jesse'];
+guestList.push('Hank');
+guestList.unshift('Mike');
+guestList.splice(1, 1, 'Gustavo');
+console.log('Lista final de invitados:', guestList.join(', '));
 
+/* ================================================================
+   BLOQUE 3: ESTRUCTURAS DE DATOS - PILAS Y COLAS 
+   ================================================================ */
+const historyStack = [];
+historyStack.push("google.com");
+historyStack.push("youtube.com");
+historyStack.push("github.com");
 
-listadeinvitados.push("pablo");
+console.log("Historial actual:" + historyStack);
 
+console.log(`Regresando a: ${ historyStack.pop() }`);
 
-listadeinvitados.unshift("pancracio");
-
-
-listadeinvitados.splice(1, 1, "patricio");
-
-
-console.log(guestList);
-
-
-
-
-/*   2. FIFO (First-In, First-Out) - Cola (Queue)
-   Concepto: El primer elemento en entrar es el primero en salir.
-*/
 const printQueue = [];
 printQueue.push("thesis.pdf");
 printQueue.push("meme.png");
 printQueue.push("invoice.docx");
-console.log("Cola de impresión:", printQueue); // ["thesis.pdf", "meme.png", "invoice.docx"]
-// La impresora termina el primer trabajo (shift)
+
+console.log("Cola de impresión:", printQueue);
+
 const printingNow = printQueue.shift();
-console.log(`Imprimiendo: ${printingNow}`); // thesis.pdf (El primero que llegó)
+console.log(`Imprimiendo: ${printingNow}`);
 
+/* ================================================================
+ Ejercicio de tareas
+================================================================ */
 
+const taskList = [];
 
+taskList.push("Barrer", "Trapear", "Sacudir");
 
+console.log("Lista de tareas inicial: " + taskList.join(", "));
 
+console.log("Tarea completada: " + taskList.shift());
 
+taskList.unshift("Limpiar arenero");
 
+console.log("Tarea URGENTE añadida, lista de tareas actualizada: " + taskList.join(", "));
 
-let taskList = [];
-
-
-taskList.push("Lavar los platos");
-taskList.push("Hacer la compra");
-taskList.push("Estudiar JavaScript");
-
-
-console.log("Lista inicial de tareas:", taskList);
-
-
-let primeraTarea = taskList.shift();
-console.log("Tarea atendida:", primeraTarea);
-
-
-taskList.unshift("Revisar servidor caído");
-
-
-console.log("Lista con tarea urgente:", taskList);
-
-
-let tareaUrgente = taskList.shift();
-console.log("Tarea urgente atendida:", tareaUrgente);
-
-
+console.log("Tarea URGENTE completada: " + taskList.shift());
+console.log("Lista de tareas final: " + taskList.join(", "));
 
 /* ================================================================
    BLOQUE 3: BUCLES (LOOPS) 
-   ================================================================
-   Estructuras que repiten un bloque de código mientras una condición sea verdadera.
-*/
-// --- 1. Ciclo FOR (Controlado) ---
-// Úsalo cuando sabes cuántas veces quieres repetir algo (ej. recorrer un array).
-// Sintaxis: for (expresión_inicial; condición; expresión_final) { ... }
-// Imprimier los números del 1 al 5
+   ================================================================ */
+
 for(let i = 1; i <=5 ; i++ ) {
     console.log(`Número ${i}`);
 }
 
-
-
-// ------------------- Uso de break en ciclos ----------------------------
-// break detiene la ejecución de la iteración en curso y termina el ciclo.
 for(let i = 1; i <=10 ; i++ ) {
     if(i === 6) {
         console.log("¡Se alcanzó el número 6");
         break; 
     }
-      console.log(`(con break) Número ${i}`);
+    console.log(`(con break) Número ${i}`);
 }
 
+// ===============Ejercicios mentales ====================
 
+let iteracion = 0;
+
+for ( ; ; ){
+    console.log( `Núm de iteración: ${iteracion}` );
+    iteracion++;
+    if ( iteracion === 5 ){
+        break;
+    }
+}
+console.log("Final", iteracion);
+
+// =====================================================
+
+let myIteration; 
+
+for (myIteration = 0; myIteration <= 5; myIteration++) {
+    console.log("For loop", myIteration );
+     if( myIteration === 2) break;  
+}
+console.log("Final", myIteration);
+
+// =====================================================
+ let jiteration;
+
+for ( jiteration = 0; jiteration < 3; jiteration++ ) {
+   console.log("For loop", jiteration );
+}
+console.log("Final", jiteration);
+
+// =====================================================
+let k;
+for ( k = 0; k < 5; k++ )   ; 
+{
+   console.log("Valor de", k );
+}
+console.log("Final", k);
+
+// ------------------- Uso de continue ----------------------
+for (let i = 0 ; i <= 5; i++ ){
+    if ( i === 3) continue;
+    console.log("Estoy dentro del ciclo for");
+    console.log("Valor de i ", i );
+}
+
+/* ================================================================
+   WHILE
+================================================================ */
+
+for(let i = 1; i <=5 ; i++ ) {
+    console.log(`Número ${i}`);
+}
+
+let i = 1;
+while(i<=5){
+   console.log("Valor de i es:", i);
+   i++;
+}
+
+// ================================================================
+
+const countries = ["México", "USA", "Canadá", "Japón"];
+
+for (let index = 0; index < countries.length; index++) {
+   const element = countries[index];
+   console.log(`(for) País en índice ${index}: ${element}`);   
+}
+
+for (const country of countries) {
+   console.log(`(for of) País: ${country}`);
+}
+
+// RETO FINAL
 const transactions = [100.00, -50.00, 200.00, -100.00, 500.00];
-let totalBalance = 0; // Inicializamos el balance en 0
+let totalBalance = 0;
 
-// 1. Usa un ciclo FOR-OF para recorrer los movimientos.
-for (const transaction of transactions) {
-  // 2. Suma los valores a la variable 'totalBalance'.
-  totalBalance += transaction;
-
-  // Opcional: Para ver cada paso del cálculo
-  // console.log(`Movimiento: ${transaction.toFixed(2)}, Balance parcial: ${totalBalance.toFixed(2)}`);
-}
-
-// 3. Imprime el balance final.
-console.log(`El balance final de la cuenta es: $${totalBalance.toFixed(2)}`);
-
+transactions.forEach( t => totalBalance += t );
