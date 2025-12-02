@@ -123,3 +123,6 @@ console.log(`Dividiendo: ${calculate(6, 3, divide)}`);
 
 // Potencia usando función anónima
 console.log(`Potencia: ${calculate(6, 3, (a, b) => a ** b )}`);
+
+// Residuos para saber si 7 es divisible entre 3
+console.log(`Residuo de 7 entre 3: ${calculate(7, 3, (a, b) => a % b)}`);
